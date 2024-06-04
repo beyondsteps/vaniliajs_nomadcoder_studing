@@ -1,0 +1,45 @@
+//const h1=document.querySelector("div.hello-world h1");
+//
+//function mouseenter(){
+//    h1.style.color="black";
+//    h1.innerText="mouse on"
+//    console.log("mouse is on!")
+//}
+//function mouseleave(){
+//    h1.style.color="blue";
+//    h1.innerText="mouse leave"
+//    console.log("mouse out!")
+//}
+//
+//function handlewindowresize(){
+//
+//    document.body.style.backgroundColor="tomato";
+//}
+//function copyfunction(){
+//
+//    alert("copy function");
+//}
+//
+//window.addEventListener("resize",handlewindowresize);
+//h1.onmouseenter=mouseenter;
+//h1.addEventListener("mouseleave",mouseleave);
+//window.addEventListener("copy", copyfunction);
+//console.dir(h1);
+
+const h1 = document.querySelector("div.hello-world h1");
+
+h1.addEventListener("click",clickFunction);
+h1.addEventListener("mouseenter",mouseenter);
+
+function mouseenter(){
+    h1.classList.contains("clicked");
+}
+function clickFunction(){
+h1.classList.toggle("clicked");
+}
+
+window.addEventListener("resize",handlewindow)
+
+function handlewindow(){
+    document.body.style.backgroundColor="tomato"
+}
