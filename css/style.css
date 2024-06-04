@@ -1,0 +1,21 @@
+body {
+
+    background-color: beige;
+
+}
+h1 {
+    font-size: 60px;
+    color: cornflowerblue ;
+    color: black;
+    
+    
+}
+
+.hidden{
+    display: none;
+}
+
+.clicked{
+    color: tomato;
+    font-size: 40px;
+}
