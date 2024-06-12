@@ -22,8 +22,7 @@ const quotes = [
 
 const quote=document.querySelector("#quote span:first-child");
 const author=document.querySelector("#quote span:last-child");
-const RANDOMQUOTENUM=Math.floor(Math.random()*quotes.length)
-const todayQuote=quotes[RANDOMQUOTENUM]
+const todayQuote=quotes[arraylength(quotes)]
 
 
 console.log(todayQuote)
@@ -34,4 +33,7 @@ author.innerText=todayQuote.author
 // ##################################################################
 // ##################################################################
 
+function arraylength(str){
+return Math.floor(Math.random()*str.length)
+}
     

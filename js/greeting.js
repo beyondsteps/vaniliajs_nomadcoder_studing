@@ -1,6 +1,6 @@
 const loginForm = document.getElementById('login-form');
 const loginbutton = loginForm.querySelector('button');
-const logininput=loginForm.querySelector('input')
+const logininput=loginForm.querySelector('#idinput')
 const greeting = document.querySelector('#greeting');
 const Savedusedname=localStorage.getItem('username');
 
@@ -10,39 +10,50 @@ const HIDDEN_CLASS="hidden"; // String 만으로 표현된 value 는 보통 대�
 const USERNAME_KEY="username";
 
 
+// ----------------------------------------------------------------
+// ----------------------------function----------------------------
+// ----------------------------------------------------------------
 
-
-
-
-function loginsubmitted(event) { // login function
-    event.preventDefault();
+function loginsubmitted(event) { // login function'
     const username = logininput.value;
+    event.preventDefault();
     localStorage.setItem(USERNAME_KEY,username);
-
+    loginForm.classList.add('hidden');
+    greetingmsg(username);
 }
 
 function greetingmsg(username){ // after login, greeting msg
 greeting.innerText=`Hello ${username} `;
 greeting.classList.remove(HIDDEN_CLASS)
-
 }
 
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+
+
+// ----------------------------------------------------------------
+// ------------------------------main------------------------------
+// ----------------------------------------------------------------
 
 
 // login 로직
 // #################################################################
 if (Savedusedname === null) {
-// show login form
-loginForm.classList.remove(HIDDEN_CLASS)
-loginForm.addEventListener("submit",loginsubmitted);
+    // show login form
+    loginForm.classList.remove(HIDDEN_CLASS)
+    loginForm.addEventListener("submit",loginsubmitted);
+    }
+    else{
+    // show login greeting
+    greetingmsg(Savedusedname);
+    }
 
-}
-else if (Savedusedname != null){
-// show login greeting
-greetingmsg(Savedusedname);
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
 
 
-}
 
 
 
