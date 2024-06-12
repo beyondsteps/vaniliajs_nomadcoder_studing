@@ -1,7 +1,7 @@
 const tdform = document.querySelector('#todo-form');
 const tdlist = document.querySelector('#todo-list');
 const tdvalue = document.querySelector('#todo-form input');
-const toDos = [];
+let toDos = [];
 const toDos_KEY = "toDos";
 
 
@@ -10,41 +10,33 @@ const toDos_KEY = "toDos";
 // Main function
 
 tdform.addEventListener('submit', tdsubmitf)
+const savetodos = localStorage.getItem(toDos_KEY);
+if (savetodos !== null) {
+    todos=JSON.parse(savetodos);
+    todos.forEach(painttodo)
+}
 
 
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 // function
+function savetodo(){
+    
+    localStorage.setItem(toDos,JSON.stringify(toDos))
+}
+
 
 function tdsubmitf(event) {
     event.preventDefault();
     const tdnew=tdvalue.value
-    painttodo(tdnew);    
+     painttodo(tdnew);    
+    // savetodo();
     tdvalue.value="";
 
 }
-// save todo to localstorage
-function savetodo(event){
-    const savedToDos = localStorage.getItem(toDos_KEY);
 
-    if (savedToDos){
-        toDos=JSON.parse(savedToDos)
-        toDos.push(tdnew)
-    }else {
-        toDos=[];
-        toDos.push(tdnew)
-    }
 
-    console.log(toDos)
-    console.log(savedToDos)
-    // localStorage.setItem('todo',JSON.stringify(toDos))
-    
-
-}
-function rmtodo(event){
-    localStorage.removeItem('todo',toDos)
-}
 
 function painttodo(tdnew){
     // todo 객체 구현
@@ -64,8 +56,9 @@ function painttodo(tdnew){
     //ul 에 위 list span 형식으로 추가
     tdlist.appendChild(liList);
     //toDOs Array 에 순차적으로 저장
-    toDos.push(tdnew);
-    savetodo();
+    const newTodo = {"id" : newDate() , "data" : tdnew}
+    toDos.push(newTodo);
+    localStorage.setItem(toDos_KEY,JSON.stringify(toDos));
 }
 //to-do remove button 구현
 function tdRemoveFunction(event){
@@ -73,5 +66,6 @@ function tdRemoveFunction(event){
     console.log(`removing span ${tdvalue}`)
     const liList=event.target.parentElement;
     liList.remove();
+
 
 }
